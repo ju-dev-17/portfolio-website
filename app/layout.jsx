@@ -1,6 +1,8 @@
 import "./globals.css";
 import localFont from "next/font/local";
 
+import Header from "./components/Header";
+
 const roboto = localFont({
   src: [
     {
@@ -25,7 +27,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable} font-sans`}>{children}</body>
+      <body className={`${roboto.variable} font-sans h-screen`}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
