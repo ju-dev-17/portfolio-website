@@ -23,8 +23,8 @@ function Header() {
 
   return (
     <>
-      <header className="fixed w-screen flex justify-around items-center h-1/6 bg-white bg-opacity-25 shadow-lg backdrop-filter backdrop-blur-sm rounded-lg border border-opacity-25 border-white">
-        <h1 className="cursor-pointer" onClick={() => window.location.reload()}>
+      <header className="fixed w-screen flex justify-around items-center h-1/6 bg-black text-white shadow-lg backdrop-filter backdrop-blur-sm border border-opacity-25 border-white">
+        <h1 className="cursor-pointer text-4xl overflow-y-hidden" onClick={() => window.location.reload()}>
           Jahid Uddin
         </h1>
         <nav className="hidden justify-between gap-10 md:flex">

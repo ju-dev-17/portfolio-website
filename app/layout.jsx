@@ -3,20 +3,15 @@ import localFont from "next/font/local";
 
 import Header from "./components/Header";
 
-const roboto = localFont({
+const montserrat = localFont({
   src: [
     {
-      path: "../public/fonts/Roboto/Roboto-Regular.ttf",
+      path: "../public/fonts/Montserrat/Montserrat-VariableFont_wght.ttf",
       weight: "400",
       style: "normal",
-    },
-    {
-      path: "../public/fonts/Roboto/Roboto-Bold.ttf",
-      weight: "700",
-      style: "normal",
-    },
+    }
   ],
-  variable: '--font-roboto'
+  variable: '--font-montserrat'
 });
 
 export const metadata = {
@@ -27,7 +22,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable} font-sans h-screen`}>
+      <body className={`${montserrat.variable} font-sans h-screen`}>
         <Header />
         {children}
       </body>
