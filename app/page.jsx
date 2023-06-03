@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import Lottie from "lottie-react";
+import { useForm, ValidationError } from "@formspree/react";
 
 import animationData from "../public/img/developer-lottie-animation.json";
 import useGithubApi from "./hooks/useGithubApi";
@@ -15,6 +16,7 @@ function Home() {
   const router = useRouter();
   const getRepositories = useGithubApi();
   const [repos, setRepos] = useState([]);
+  const [state, handleSubmit] = useForm("mrgvwpzz");
 
   useEffect(() => {
     const fetchRepositories = async () => {
@@ -104,19 +106,14 @@ function Home() {
       <section id="contact" className="h-screen flex flex-col justify-center">
         <div className="bg-black rounded-lg p-8">
           <h2 className="text-white text-2xl mb-4">Contact Me</h2>
-          <form>
-            <div className="mb-4">
-              <label htmlFor="name" className="text-white">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Your name"
-                className="bg-gray-900 text-white w-full p-2 rounded outline-none"
-              />
-            </div>
+          <form
+            onSubmit={(event) => {
+              handleSubmit(event);
+              document.querySelector("#email").value = "";
+              document.querySelector("#message").value = "";
+            }}
+            method="POST"
+          >
             <div className="mb-4">
               <label htmlFor="email" className="text-white">
                 Email
@@ -127,6 +124,11 @@ function Home() {
                 name="email"
                 placeholder="Your email"
                 className="bg-gray-900 text-white w-full p-2 rounded outline-none"
+              />
+              <ValidationError
+                prefix="Email"
+                field="email"
+                errors={state.errors}
               />
             </div>
             <div className="mb-4">
@@ -140,9 +142,15 @@ function Home() {
                 placeholder="Your message"
                 className="bg-gray-900 text-white w-full p-2 rounded outline-none"
               ></textarea>
+              <ValidationError
+                prefix="Message"
+                field="message"
+                errors={state.errors}
+              />
             </div>
             <button
               type="submit"
+              disabled={state.submitting}
               className="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded"
             >
               Send Message
