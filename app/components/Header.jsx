@@ -1,12 +1,14 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Image from "next/image";
 
 import ScrollLink from "./ScrollLink";
 
-function Header({ visibilty, setVisibility }) {
+function Header() {
+  const [visibilty, setVisibility] = useState(false);
+
   useEffect(() => {
     const handleResize = () => {
       setVisibility(false);
@@ -53,12 +55,18 @@ function Header({ visibilty, setVisibility }) {
         />
       </header>
       {visibilty && (
-        <div className="fixed inset-0 flex items-center justify-center">
+        <div className="fixed inset-x-0 bottom-0 flex items-center justify-center z-10 bg-white h-5/6">
           <div className="px-10 flex flex-col justify-center">
             <nav className="flex flex-col gap-10">
-              <ScrollLink href="#about">About</ScrollLink>
-              <ScrollLink href="#projects">Projects</ScrollLink>
-              <ScrollLink href="#contact">Contact</ScrollLink>
+              <ScrollLink href="#about">
+                <span onClick={() => setVisibility(false)}>About</span>
+              </ScrollLink>
+              <ScrollLink href="#projects">
+                <span onClick={() => setVisibility(false)}>Projects</span>
+              </ScrollLink>
+              <ScrollLink href="#contact">
+                <span onClick={() => setVisibility(false)}>Contact</span>
+              </ScrollLink>
             </nav>
           </div>
         </div>

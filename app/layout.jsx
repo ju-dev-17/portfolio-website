@@ -1,12 +1,9 @@
-"use client";
-
 import "./globals.css";
-import React, { useState } from "react";
+import React from "react";
 
 import localFont from "next/font/local";
 
 import Header from "./components/Header";
-import VisibilityWrapper from "./wrapper/VisibilityWrapper";
 
 const montserrat = localFont({
   src: [
@@ -25,15 +22,11 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const [visibilty, setVisibility] = useState(false);
-
   return (
     <html lang="en">
       <body className={`${montserrat.variable} font-sans h-screen`}>
-        <Header visibilty={visibilty} setVisibility={setVisibility} />
-        <VisibilityWrapper visibility={visibilty}>
-          {children}
-        </VisibilityWrapper>
+        <Header />
+        {children}
       </body>
     </html>
   );
